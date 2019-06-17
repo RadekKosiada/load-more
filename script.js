@@ -5,21 +5,18 @@ var mainContainer = document.getElementById('main-container');
 document.addEventListener('scroll', changeColor);
 
 function changeColor(e) {
-    console.log("fjghf", document.pageY, document.pageYOffset, document.scrollTop);
-    
-    var hasReachedBottom = $(document).scrollTop() + $(window).height() >=$(document).height()-100;
+    var html = document.documentElement; //html the whole document;
+    var levelToTriggerData = 200;
 
+
+    var hasReachedBottom = html.clientHeight >= html.scrollHeight - html.scrollTop-levelToTriggerData;
     if(hasReachedBottom) {
-        console.log("reached bottom");
-        callMoreData();
-    } else {
-        setTimeout(checkscrollPosition, 500);
+        console.log("change the color")
+        // GET request from DB
+        mainContainer.style.backgroundColor = "green";
+    }     
+    else {
+        mainContainer.style.backgroundColor = "yellow";
     }
-    // if(e.pageYOffset > e.pageY/2) {
-    //     console.log("Yay1")
-    //     mainContainer.style.backgroundColor = "green";
-    // } else {
-    //     mainContainer.style.backgroundColor = "yellow";
-    // }
 }
-    
+
